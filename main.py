@@ -30,7 +30,9 @@ if __name__ == "__main__":
         if keys:
             player1.movement(keys)
             player2.movement(keys)
-        ball.ballMovement()    
+        isPoint = ball.ballMovement(player1.rect,player2.rect)
+        if (isPoint):
+            ball.resetPos()
         render()
         pygame.display.update()
     
