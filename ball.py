@@ -10,7 +10,7 @@ class ball():
         self.ballPos = (400,random.randint(100,300))
         self.ballWidth = 20
         self.direction = [1 if random.randint(-1,1) >=1 else -1, 1 if random.randint(-1,1) >=1 else -1]
-        self.speed = 3
+        self.speed = 8
     
     def drawBall(self):
         pygame.draw.circle(self.screen, self.color, self.ballPos, self.ballWidth)
@@ -20,9 +20,9 @@ class ball():
             self.direction = [self.direction[0],self.direction[1]*(-1)]
     
     def checkRacketLimits(self, player1, player2):
-        if self.ballPos[0] - self.ballWidth <= 50 and self.ballPos[1] in range(player1[1],player1[1]+180): #50 is player1 racket final pos in x axis. 180 is the racket length.
+        if self.ballPos[0] - self.ballWidth <= 50 and self.ballPos[1] in range(player1[1],player1[1]+180) and self.direction[0] == -1: #50 is player1 racket final pos in x axis. 180 is the racket length.
             self.direction = [self.direction[0]*(-1),self.direction[1]]
-        if self.ballPos[0] + self.ballWidth >= self.screenSize[0] - 50 and self.ballPos[1] in range(player2[1],player2[1]+180):
+        if self.ballPos[0] + self.ballWidth >= self.screenSize[0] - 50 and self.ballPos[1] in range(player2[1],player2[1]+180) and self.direction[0] == 1:
             self.direction = [self.direction[0]*(-1),self.direction[1]]
     
     def checkPointScored(self):
